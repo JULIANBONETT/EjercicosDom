@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda en Tabla HTML</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+        }
+        #resultado {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>Búsqueda en Tabla</h2>
+    
+    <label for="busqueda">Término de búsqueda:</label>
+    <input type="text" id="busqueda" placeholder="Ingrese término de búsqueda">
+    <button onclick="buscarEnTabla()">Buscar</button>
+
+    <table id="miTabla">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Producto A</td>
+                <td>Un producto excelente</td>
+            </tr>
+            <tr>
+                <td>Producto B</td>
+                <td>Producto de calidad superior</td>
+            </tr>
+            <tr>
+                <td>Producto C</td>
+                <td>Excelente para el uso diario</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="resultado">Resultados: </div>
+
+    <script>
+        function buscarEnTabla() {
+            const termino = document.getElementById("busqueda").value.toLowerCase();
+            const tabla = document.getElementById("miTabla");
+            const filas = tabla.getElementsByTagName("tr");
+            let conteo = 0;
+
+            for (let i = 1; i < filas.length; i++) {  // i = 1 para omitir la cabecera
+                const celdas = filas[i].getElementsByTagName("td");
+                let encontrado = false;
+                
+                for (let j = 0; j < celdas.length; j++) {
+                    if (celdas[j].textContent.toLowerCase().includes(termino)) {
+                        encontrado = true;
+                        conteo += (celdas[j].textContent.toLowerCase().match(new RegExp(termino, "g")) || []).length;
+                    }
+                }
+
+                // Mostrar u ocultar la fila según si hay coincidencia
+                filas[i].style.display = encontrado ? "" : "none";
+            }
+
+            document.getElementById("resultado").textContent = "Resultados: " + conteo + " coincidencias encontradas";
+        }
+    </script>
+</body>
+</html>

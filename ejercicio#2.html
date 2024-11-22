@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas</title>
+    <style>
+        /* Estilos básicos */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f2f2f2;
+        }
+
+        .task-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            margin-right: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .task-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .task-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .task-list li.completed {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+        .task-actions button {
+            margin-left: 5px;
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .task-actions button:hover {
+            background-color: #c9302c;
+        }
+        
+        .mark-complete {
+            background-color: #5bc0de;
+        }
+        
+        .mark-complete:hover {
+            background-color: #31b0d5;
+        }
+    </style>
+</head>
+<body>
+    <div class="task-container">
+        <h2>Lista de Tareas</h2>
+        <input type="text" id="taskInput" placeholder="Nueva tarea...">
+        <button onclick="agregarTarea()">Agregar Tarea</button>
+        
+        <ol class="task-list" id="taskList"></ol>
+    </div>
+
+    <script>
+        function agregarTarea() {
+            // Obtener el valor del campo de texto
+            const taskInput = document.getElementById("taskInput");
+            const tarea = taskInput.value.trim();
+
+            // Validar que el campo no esté vacío
+            if (tarea === "") {
+                alert("Por favor, ingresa una tarea.");
+                return;
+            }
+
+            // Crear un elemento de lista para la nueva tarea
+            const nuevaTarea = document.createElement("li");
+            
+            // Crear un span para contener el texto de la tarea
+            const textoTarea = document.createElement("span");
+            textoTarea.innerText = tarea;
+            
+            // Crear un contenedor para los botones de acción
+            const taskActions = document.createElement("div");
+            taskActions.className = "task-actions";
+            
+            // Botón para marcar como completado
+            const btnCompletar = document.createElement("button");
+            btnCompletar.className = "mark-complete";
+            btnCompletar.innerText = "Completado";
+            btnCompletar.onclick = () => {
+                nuevaTarea.classList.toggle("completed");
+            };
+            
+            // Botón para eliminar tarea
+            const btnEliminar = document.createElement("button");
+            btnEliminar.innerText = "Eliminar";
+            btnEliminar.onclick = () => {
+                nuevaTarea.remove();
+            };
+            
+            // Agregar botones de acción al contenedor
+            taskActions.appendChild(btnCompletar);
+            taskActions.appendChild(btnEliminar);
+
+            // Agregar el texto de la tarea y las acciones al elemento de lista
+            nuevaTarea.appendChild(textoTarea);
+            nuevaTarea.appendChild(taskActions);
+
+            // Agregar la nueva tarea a la lista
+            document.getElementById("taskList").appendChild(nuevaTarea);
+
+            // Limpiar el campo de texto
+            taskInput.value = "";
+        }
+    </script>
+</body>
+</html>

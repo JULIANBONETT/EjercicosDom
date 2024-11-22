@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario </title>
+    <style>
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('https://static.vecteezy.com/system/resources/thumbnails/005/182/612/small/green-abstract-geometric-shape-background-free-vector.jpg'); /* Cambia esto por la URL de tu imagen */
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.85); 
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>REALIZAR EL FORMULARIO</h2>
+        <form id="registroForm">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre">
+            <div id="nombreError" class="error"></div>
+
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email">
+            <div id="emailError" class="error"></div>
+
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password">
+            <div id="passwordError" class="error"></div>
+
+            <button type="button" onclick="validarFormulario()">Registrarse</button>
+        </form>
+    </div>
+
+    <script>
+        function validarFormulario() {
+            
+            const nombre = document.getElementById("nombre").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            
+            document.getElementById("nombreError").innerText = "";
+            document.getElementById("emailError").innerText = "";
+            document.getElementById("passwordError").innerText = "";
+
+            
+            let formularioValido = true;
+
+           
+            if (nombre === "") {
+                document.getElementById("nombreError").innerText = "El nombre es obligatorio.";
+                formularioValido = false;
+            }
+
+            // Validar campo Email
+            if (email === "") {
+                document.getElementById("emailError").innerText = "El correo electrónico es obligatorio.";
+                formularioValido = false;
+            } else if (!/\S+@\S+\.\S+/.test(email)) {
+                document.getElementById("emailError").innerText = "Formato de correo electrónico inválido.";
+                formularioValido = false;
+            }
+
+            
+            if (password === "") {
+                document.getElementById("passwordError").innerText = "La contraseña es obligatoria.";
+                formularioValido = false;
+            } else if (password.length < 8) {
+                document.getElementById("passwordError").innerText = "La contraseña debe tener al menos 8 caracteres.";
+                formularioValido = false;
+            }
+
+            
+            if (formularioValido) {
+                console.log("Datos del formulario:");
+                console.log("Nombre:", nombre);
+                console.log("Correo Electrónico:", email);
+                console.log("Contraseña:", password);
+                alert("Formulario enviado correctamente.");
+            }
+        }
+    </script>
+</body>
+</html>
