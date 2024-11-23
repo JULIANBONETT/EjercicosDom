@@ -13,16 +13,26 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            background-color: #f2f2f2;
+            
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('https://img.freepik.com/foto-gratis/fondo-desenfoque-degradado-vintage-suave-color-pastel-que-usa-como-sala-estudio-presentacion-productos-pancarta_1258-71578.jpg'); /* Cambia esto por la URL de tu imagen */
+            background-size: cover;
+            background-position: center;
         }
-
+        
         .task-container {
             width: 100%;
             max-width: 400px;
             padding: 20px;
             border-radius: 8px;
             background-color: #ffffff;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 0px 1115px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
@@ -99,6 +109,7 @@
     <div class="task-container">
         <h2>Lista de Tareas</h2>
         <input type="text" id="taskInput" placeholder="Nueva tarea...">
+        <br><br>
         <button onclick="agregarTarea()">Agregar Tarea</button>
         
         <ol class="task-list" id="taskList"></ol>

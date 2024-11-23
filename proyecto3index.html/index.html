@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Búsqueda en Tabla HTML</title>
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20210807/pngtree-simple-wallpaper-fuzzy-love-cute-light-blue-background-image_758094.jpg'); /* Cambia esto por la URL de tu imagen */
+            background-size: cover;
+            background-position: center;
+        }
+        
         table, th, td {
             border: 1px solid black;
             border-collapse: collapse;
@@ -17,6 +30,7 @@
     </style>
 </head>
 <body>
+    <center>
     <h2>Búsqueda en Tabla</h2>
     
     <label for="busqueda">Término de búsqueda:</label>
@@ -55,7 +69,7 @@
             const filas = tabla.getElementsByTagName("tr");
             let conteo = 0;
 
-            for (let i = 1; i < filas.length; i++) {  // i = 1 para omitir la cabecera
+            for (let i = 1; i < filas.length; i++) {  // i = 1 para omitir
                 const celdas = filas[i].getElementsByTagName("td");
                 let encontrado = false;
                 
@@ -66,12 +80,13 @@
                     }
                 }
 
-                // Mostrar u ocultar la fila según si hay coincidencia
+                // Ocultar o muestra la fila según si hay coincidencia
                 filas[i].style.display = encontrado ? "" : "none";
             }
 
             document.getElementById("resultado").textContent = "Resultados: " + conteo + " coincidencias encontradas";
         }
     </script>
+</center>
 </body>
 </html>
